@@ -1,6 +1,12 @@
 SafeKeeper - Protecting Web passwords using Trusted Execution Environments
 ==========================================================================
 
+Explanation
+-----------
+
+We are students studying server side IntelSGX implementations. We've forked this repository in order to add comments/play around with it, with the aim of better understanding it! 
+
+
 Introduction
 ------------
 
