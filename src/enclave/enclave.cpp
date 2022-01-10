@@ -326,10 +326,12 @@ int ecall_process(nrt_ra_context_t context,
         return SGX_ERROR_INVALID_PARAMETER;
     }
 
+    // Julian: copies the salt from the password buffer into the 'salt' variable ?
     salt.assign( &password[password_length - SALT_LENGTH], SALT_LENGTH );
     password_length -= SALT_LENGTH;
 
     // Check if the password is encrypted
+    // Julian: if the password is greater than the DH_Pubkey, it's considered encrypted- why?
     if( password_length > DH_PUBKEY_LENGTH ) {
         encrypted = true;
         ret = nrt_ra_set_gb_trusted(context,

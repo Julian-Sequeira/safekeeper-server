@@ -168,7 +168,7 @@ sgx_status_t enclave_process(sgx_enclave_id_t eid,
     memset(pass, 0, len);
 
     // Multiply length by 2 because 2 hex characters are 1 byte
-    if( len > 2*DH_PUBKEY_LENGTH + SALT_LENGTH ) {
+    if( len > 2*DH_PUBKEY_LENGTH + SALT_LENGTH ) {  // in this case, the password has been encrypted (with DH priv key?)
         dehexed_len = hex2bytes(password, len - SALT_LENGTH, pass);
         memcpy(&(pass[dehexed_len]), &(password[len - SALT_LENGTH]), SALT_LENGTH);
         len = dehexed_len + SALT_LENGTH;
@@ -185,7 +185,7 @@ sgx_status_t enclave_process(sgx_enclave_id_t eid,
             pass[ dehexed_len - DH_PUBKEY_LENGTH/2 + i] = pass[ dehexed_len-1 - i ];
             pass[ dehexed_len-1 - i ] = t;
         }
-    } else {
+    } else { // else it's not encrypted - how could it not be encrypted? 
         memcpy(pass, password, len);
     }
 
